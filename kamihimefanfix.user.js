@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         KamihimeFanFix
 // @namespace    https://kamihimefanfix.github.io/kamihimefanfix
-// @version      0.1
+// @version      0.2
 // @description  A user script designed to allow players to fix mistranslations by Nutaku in Kamihime PROJECT R.
 // @author       You
 // @match        https://cf.r.kamihimeproject.dmmgames.com/*
@@ -32,7 +32,8 @@ function hijackkh () {
             haremSceneInstance.get = getHaremScene.bind(haremSceneInstance);
             var scenarioInstance = kh.createInstance("apiScenarios");
             scenarioInstance.get = getScenarioScene.bind(scenarioInstance);
-            kh.createInstance("HttpSuperAgentConnection")._connect = customConnect;
+            var httpSuperAgentConnection = kh.createInstance("HttpSuperAgentConnection");
+            httpSuperAgentConnection._connect = customConnect.bind(httpSuperAgentConnection);
             console.log("successfully hijacked kamihime");
         } catch (e) {
             setTimeout(hijackkh, 1);
@@ -79,21 +80,26 @@ function URLDelegate(e) {
 function customConnect(e) {
     var t = Q.defer();
     if(e.url.match(/http[s]?:\/\/cf\.r\.kamihimeproject\.dmmgames\.com/)) {
-        e.withCredentials = reqWithCredentials;
+        e.withCredentials = reqWithCredentials.bind(e);
     } else {
-        e.withCredentials = reqWithoutCredentials;
+        e.withCredentials = reqWithoutCredentials.bind(e);
     }
     return e.withCredentials(), e.on("error", function(e) {
         t.reject(e);
     }), e.end(function(e) {
-        e.ok ? t.resolve(e) : t.reject(e), this._updateCsrfTokenIfExists()
-    }.bind(customConnect)), t.promise;
+        if(e.ok) {
+            t.resolve(e);
+        } else {
+            t.reject(e);
+        }
+        this._updateCsrfTokenIfExists();
+    }.bind(this)), t.promise;
 }
 
 function reqWithCredentials() {
-    return !0;
+    return this._withCredentials = !0, this;
 }
 
 function reqWithoutCredentials() {
-    return 0;
+    return 0, this;
 }
