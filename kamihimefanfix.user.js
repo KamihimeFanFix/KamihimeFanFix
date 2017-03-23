@@ -69,7 +69,7 @@ function overwriteURLDelegate(e) {
 function URLDelegate(e) {
     var path = e.urlOrg.split("/").filter(Boolean);
     if (replacementIndex[path[0]] && replacementIndex[path[0]][0] == path[1]) {
-        console.log('acquireing replacmeent for ' + e.url);
+        console.log('acquiring replacmeent for ' + e.url);
         return e.url = 'https://kamihimefanfix.github.io/KamihimeFanFix' + e.url + '.json', e;
     } else {
         return e.url = kh.env.urlRoot + e.url.replace(/^https?:\/\/[^\/]+?\//, "/"), e;
