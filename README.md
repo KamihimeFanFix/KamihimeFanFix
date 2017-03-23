@@ -1,6 +1,10 @@
 # KamihimeFanFix
 A user script designed to allow players to fix mistranslations by Nutaku in Kamihime.
 
+## How to install the userscript
+This will require you use Tampermonkey or Greasemonkey extensions in your respective browsers.
+I recommend installing the script from this link [https://kamihimefanfix.github.io/KamihimeFanFix/kamihimefanfix.user.js](https://kamihimefanfix.github.io/KamihimeFanFix/kamihimefanfix.user.js). If you install it from this link you should be notified if the script gets updated.
+
 ## How to obtain missing language files
 You can obtain files that are not currently in the repo by opening the Chrome dev tools (F12) going to the network tab and then launching the scene that you would like to get the language files for.
 
