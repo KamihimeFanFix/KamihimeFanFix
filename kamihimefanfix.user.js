@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         KamihimeFanFix
 // @namespace    https://kamihimefanfix.github.io/kamihimefanfix
-// @version      0.2
+// @version      0.3
 // @description  A user script designed to allow players to fix mistranslations by Nutaku in Kamihime PROJECT R.
 // @author       You
 // @match        https://cf.r.kamihimeproject.dmmgames.com/*
 // @exclude      https://cf.r.kamihimeproject.dmmgames.com/front/cocos2d-proj/components-pc/scenario/tyrano.html
+// @exclude      https://cf.r.kamihimeproject.dmmgames.com/front/cocos2d-proj/components-pc/scenario/anim-player.html
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
 // @run-at       document-end
