@@ -1,8 +1,9 @@
 {
+  "scenarios": [
+    "100001_main",
+    "77_harem-character"
+  ],
   "harem_scenes": [
     "100002_main"
-  ],
-  "scenarios": [
-    "77_harem-character"
   ]
 }
