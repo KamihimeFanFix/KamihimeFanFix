@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         KamihimeFanFix
 // @namespace    https://kamihimefanfix.github.io/kamihimefanfix
-// @version      0.3
+// @version      0.4
 // @description  A user script designed to allow players to fix mistranslations by Nutaku in Kamihime PROJECT R.
 // @author       You
 // @match        https://cf.r.kamihimeproject.dmmgames.com/*
@@ -70,7 +70,7 @@ function overwriteURLDelegate(e) {
 
 function URLDelegate(e) {
     var path = e.urlOrg.split("/").filter(Boolean);
-    if (replacementIndex[path[0]] && replacementIndex[path[0]][0] == path[1]) {
+    if (replacementIndex[path[0]] && replacementIndex[path[0]].indexOf(path[1]) >= 0) {
         console.log('acquiring replacmeent for ' + e.url);
         return e.url = 'https://kamihimefanfix.github.io/KamihimeFanFix' + e.url + '.json', e;
     } else {
